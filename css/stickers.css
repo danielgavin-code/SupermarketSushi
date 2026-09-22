@@ -1,0 +1,22 @@
+/* Text-only page; shared homepage styling stays untouched. */
+.sticker-copy {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 38rem);
+  color: #000;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.sticker-copy h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1.125rem;
+}
+
+.sticker-copy p {
+  margin: 0 0 1.25rem;
+}
+
+.sticker-copy nav {
+  margin-top: 2rem;
+}

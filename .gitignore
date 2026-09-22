@@ -1,0 +1,16 @@
+# OS metadata
+.DS_Store
+._*
+Thumbs.db
+
+# Local editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local server output
+*.log
+*.pid
+__pycache__/

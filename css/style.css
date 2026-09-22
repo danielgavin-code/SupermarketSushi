@@ -1,0 +1,265 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #e7dfc8;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(16px, 3.5vw, 52px);
+  display: grid;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Muted version of the original oversized print collage. */
+.wallpaper {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+  background: #e7dfc8;
+}
+
+.fragment { position: absolute; }
+
+.ink-red {
+  width: 64%; height: 45%; left: -12%; top: -17%;
+  background: #c86e51;
+  transform: rotate(-13deg);
+  clip-path: polygon(0 5%, 19% 0, 32% 7%, 50% 2%, 68% 6%, 83% 0, 100% 4%, 96% 31%, 100% 54%, 94% 72%, 100% 96%, 73% 100%, 51% 94%, 30% 100%, 4% 93%);
+}
+
+.ink-teal {
+  width: 34%; height: 110%; right: -18%; top: -8%;
+  background: #578e90;
+  transform: rotate(17deg);
+}
+
+.ink-yellow {
+  width: 75%; height: 37%; bottom: -17%; left: -7%;
+  background: #c9ac58;
+  transform: rotate(9deg);
+}
+
+.ink-black {
+  width: 47%; height: 22%; right: -9%; bottom: -7%;
+  background: #303731;
+  transform: rotate(-12deg);
+}
+
+.checker-strip {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  background: #e7dfc8;
+}
+
+.checker-strip i { aspect-ratio: 1; }
+.checker-strip i:nth-child(odd) { background: #303731; }
+
+.checker-top {
+  width: 44%; top: -12%; right: 0;
+  transform: rotate(14deg);
+  z-index: 2;
+}
+
+.checker-bottom {
+  width: 28%; left: -18%; bottom: -9%;
+  transform: rotate(-24deg);
+  z-index: 3;
+}
+
+/* Individual dotted ink rows form two isolated halftone fragments. */
+.dot-patch {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.dot-patch i {
+  display: block;
+  flex: 0 0 3px;
+  border-top: 3px dotted #303731;
+}
+
+.dots-left {
+  width: 22%; height: 61%; left: -13%; top: 14%;
+  transform: rotate(11deg);
+}
+
+.dots-bottom {
+  width: 43%; height: 23%; right: 8%; bottom: -12%;
+  background: #c86e51;
+  transform: rotate(-8deg);
+  clip-path: polygon(0 3%, 95% 0, 100% 14%, 96% 38%, 100% 73%, 94% 100%, 0 97%);
+}
+
+@media (max-width: 600px) {
+  .checker-strip, .dot-patch { display: none; }
+}
+
+.panel {
+  position: relative;
+  min-width: 0;
+  background: #FCF8F0;
+  border: 2px solid #292d27;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 4vh, 40px);
+  padding: clamp(24px, 4vw, 56px);
+}
+
+/* Print character stays at the paper edges, clear of the artwork. */
+.panel::before,
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.panel::before {
+  background: radial-gradient(circle, #655638 0 .55px, transparent .9px) 3px 7px / 23px 29px,
+    radial-gradient(circle, #fffdf4 0 .7px, transparent 1px) 11px 3px / 31px 37px;
+  opacity: .08;
+  /* Confine the speckles to a narrow perimeter rather than behind the logo. */
+  -webkit-mask-image: linear-gradient(to right, #000, transparent 18px, transparent calc(100% - 18px), #000), linear-gradient(to bottom, #000, transparent 18px, transparent calc(100% - 18px), #000);
+  mask-image: linear-gradient(to right, #000, transparent 18px, transparent calc(100% - 18px), #000), linear-gradient(to bottom, #000, transparent 18px, transparent calc(100% - 18px), #000);
+}
+
+.panel::after {
+  background:
+    linear-gradient(155deg, #c5a34d 0 48%, transparent 49%) left top / 19% 22px,
+    linear-gradient(25deg, transparent 0 42%, #689b98 43%) right bottom / 16% 22px,
+    repeating-linear-gradient(135deg, #343932 0 1px, transparent 1px 6px) right 8px top 8px / 9% 12px,
+    radial-gradient(circle, #343932 .7px, transparent 1px) left 8px bottom 8px / 11% 12px;
+  background-repeat: no-repeat;
+  opacity: .055;
+}
+
+.logo,
+.panel nav {
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  display: block;
+  width: min(100%, 1000px, 96vh);
+  height: auto;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+nav li {
+  white-space: nowrap;
+}
+
+nav li + li::before {
+  content: "|";
+  margin: 0 12px;
+  color: #000;
+}
+
+nav a,
+nav a:visited {
+  color: #000;
+  text-decoration: underline;
+  letter-spacing: 0.04em;
+}
+
+nav a:hover {
+  background-color: #a8d5cf;
+}
+
+nav a:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .panel {
+    padding: 28px 16px;
+    gap: 28px;
+  }
+
+  nav ul {
+    font-size: 13px;
+  }
+
+  nav li + li::before {
+    margin: 0 8px;
+  }
+}
+
+/* Optional print imperfections: 30 individually placed, varied edge marks. */
+.print-mark {
+  position: absolute;
+  pointer-events: none;
+  color: #343932;
+  opacity: var(--ink, .28);
+  width: var(--size, 7px);
+  transform: rotate(var(--angle, 0deg));
+  z-index: 0;
+}
+
+.print-mark-scratch {
+  height: 2px;
+  background: currentColor;
+  clip-path: polygon(0 55%, 37% 15%, 100% 35%, 79% 65%, 21% 100%);
+}
+
+.print-mark-line {
+  height: 3px;
+  background: currentColor;
+  clip-path: polygon(0 20%, 38% 0, 38% 55%, 63% 55%, 63% 15%, 100% 30%, 92% 70%, 63% 90%, 63% 60%, 38% 60%, 38% 80%, 0 100%);
+}
+
+.print-mark-scuff {
+  height: 4px;
+  background: currentColor;
+  clip-path: polygon(0 40%, 32% 0, 48% 29%, 100% 12%, 76% 65%, 42% 100%, 16% 72%);
+}
+
+.print-mark-flecks {
+  width: 1.5px;
+  height: 1.5px;
+  background: currentColor;
+  box-shadow: 3px -2px currentColor, 6px 2px currentColor, 2px 4px currentColor;
+}
+
+.print-mark-arc {
+  height: 5px;
+  border-top: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+  border-radius: 65% 35% 0 0;
+}
+
+.print-mark-chip {
+  height: 3px;
+  background: currentColor;
+  clip-path: polygon(8% 0, 100% 43%, 62% 100%, 0 71%, 27% 37%);
+}
