@@ -263,3 +263,20 @@ nav a:focus-visible {
   background: currentColor;
   clip-path: polygon(8% 0, 100% 43%, 62% 100%, 0 71%, 27% 37%);
 }
+
+/* Homepage-only scratch experiment, separate from the original edge marks. */
+.scratch-experiment {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.scratch-experiment .light-ink {
+  color: #fcf8f0;
+}
+
+.scratch-preview nav {
+  z-index: 3;
+}
